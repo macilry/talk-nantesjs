@@ -49,29 +49,38 @@
 						<p>
 							<h3>Antoine CELLIER</h3>
 							@antoinecellier3 <br><br>
-							<h3>Consultant chez Zenika</h3>
+							<h3>Consultant - Développeur chez Zenika</h3>
 							<i>#front #javascript #reactjs #angularjs</i>
 						</p>
+						<aside class="notes">
+							Avant de continuer un petit sondage : qui a déjà utilisé/testé react ? qui l'utilise dans son travail ?
+						</aside>
 					</section>
 
 					<section id="fragments">
 						<h2>Historique</h2>
-						<p class="fragment">Début du projet fin 2011 au sein de Facebook.</p>
-						<p class="fragment">Open source depuis le 29 mai 2013.</p>
-						<p class="fragment">Netflix, Yahoo, Airbnb</p>
+						<p class="fragment">Portage JavaScript de XHP, une extension PHP </p>
+						<p class="fragment">Librairie créée par Jordan Walke (Facebook) en 2011</p>
+						<p class="fragment">Open-sourcée en 2013.</p>
+						<p class="fragment">Facebook, Instagram, Netflix, Yahoo, Airbnb</p>
 					</section>
 
 					<section id="fragments">
-						<p class="fragment">Peut être considérée comme le V(view) dans le modèle MVC.</p>
-						<p class="fragment">Créations de composants</p>
-						<p class="fragment">Une nouvelle façon de concevoir.</p>
+						<p class="fragment">React est une librairie orientée composant.</p>
+						<p class="fragment">Peut être considéré comme le V(view) dans le modèle MVC.</p>
+						<p class="fragment">Créations de composants.</p>
+						<p class="fragment">Une API simple, concise et cohérente.</p>
+						<aside class="notes">
+							React n'est pas un framework full-stack. Si on doit le comparer à Angular, il faut le comparer seulement à la partie directive d'Angular.
+						</aside>
 					</section>
 
 					<section data-background="http://i.giphy.com/140ObFj9MRjRIc.gif">
 						<h2>Javascript everywhere</h2>
 						<aside class="notes">
+							Avec react on va avoir une nouvelle façon de concevoir.
 							Lorsque l’on travail avec ReactJs la première chose à faire c’est oublier :
-							oublier le DOM, les sélecteurs CSS, le HTML… on reste dans le code javascript, même pour des composants qui ont une finalité graphique.
+							oublier le DOM, le HTML… on reste dans le code javascript, même pour des composants qui ont une finalité graphique.
 						</aside>
 					</section>
 
@@ -88,16 +97,30 @@ var HelloWorld = React.createClass({
 
 });
 
-React.render( React.createElement(HelloWorld), document.body );
+React.render(React.createElement(HelloWorld),
+	     document.getElementById('app'));
 </code></pre>
+<pre class="fragment"><code>
+&lt;div id="app"&gt;
+	&lt;div class="hello-world"&gt;Hello world!&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<aside class="notes">
+	Donc là ok on utilisé seulement du javascript mais on risque de perdre en visibilité au niveau du code.
+</aside>
 					</section>
 
 
 				<section>
 					<h2>JSX</h2>
-					<p class="fragment">Syntaxe Proche du XML</p>
-					<p class="fragment">Simplifier l'écriture des composants</p>
+					<p class="fragment">Syntaxe déclarative ressemblante au HTML</p>
+					<p class="fragment">Simplifier l'écriture de composants</p>
 					<p class="fragment">Séparer les rôles</p>
+					<p class="fragment">Doit être transpilé en JS</p>
+					<aside class="notes">
+					Permet de définir des ReactElement avec une syntaxe déclarative ressemblante au HTML
+
+					</aside>
 				</section>
 
 				<section>
@@ -112,6 +135,11 @@ var HelloWorld = React.createClass({
 
 React.render( &lt;HelloWorld /&gt;, document.getElementById('app') );
 </code></pre>
+<pre class="fragment"><code>
+&lt;div id="app"&gt;
+	&lt;div class="hello-world"&gt;Hello world!&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
 				</section>
 
 				<section>
@@ -125,19 +153,19 @@ React.render( &lt;HelloWorld /&gt;, document.getElementById('app') );
 				<!-- Example of nested vertical slides -->
 				<section>
 					<div style="float:left;border-right:1px solid;width:50%;font-size:33px;padding:15px;">
-						<h2>Props</h2>
-						<p>Passé depuis le parent</p>
-						<p>&lt;Talk topic="reactjs" /&gt;</p>
-						<p>this.props</p>
-						<p>Immutable</p>
-						<p>Peut avoir une valeur par défaut</p>
+						<h2 class="fragment">Props</h2>
+						<p class="fragment">Passé depuis le parent</p>
+						<p class="fragment">&lt;Talk topic="reactjs" /&gt;</p>
+						<p class="fragment">this.props.topic</p>
+						<p class="fragment">Immutable</p>
+						<p class="fragment">Peut avoir une valeur par défaut</p>
 					</div>
 					<div style="font-size:33px;padding:15px;">
-						<h2>State</h2>
-						<p>Créé dans le composant</p>
-						<p><i>getInitialState()</i></p>
-						<p><i>this.state</i></p>
-						<p><i>this.setState()</i></p>
+						<h2 class="fragment">State</h2>
+						<p class="fragment">Créé dans le composant</p>
+						<p class="fragment"><i>getInitialState()</i></p>
+						<p class="fragment"><i>this.state</i></p>
+						<p class="fragment"><i>this.setState()</i></p>
 					</div>
 				</section>
 
@@ -172,12 +200,10 @@ React.render( &lt;Pay currency="$" /&gt;, document.getElementById('app') );
 
 				<section style="font-size:28px">
 					<h2>Cycle de vie d'un composant</h2>
-					<p class="fragment"><strong>componentWillMount()</strong></p>
 					<p class="fragment"><strong>componentDidMount()</strong></p>
 					<p class="fragment"><strong>componentWillReceiveProps(object nextProps)</strong></p>
 					<p class="fragment"><strong><i>boolean</i> shouldComponentUpdate(object nextProps, object nextState)</strong></p>
 					<p class="fragment"><strong>componentWillUpdate(object nextProps, object nextState)</strong></p>
-					<p class="fragment"><strong>componentDidUpdate(object prevProps, object prevState)</strong></p>
 				</section>
 
 				<section>
@@ -216,9 +242,14 @@ var Pay = React.creareClass({
 					<p class="fragment"><strong>Mettre à jour le DOM de la manière la plus efficace</strong></p>
 
 					<aside class="notes">
-						Le concept derrière ReactJs est de travailler sur un DOM virtuel
-						et non sur le vrai DOM dont les accès en lecture et surtout en écriture
-						sont très lent comparés à des traitements en mémoire.
+						<ul>
+							<ul>
+								<li>Le concept derrière ReactJs est de travailler sur un DOM virtuel</li>
+								<li>Sur le vrai DOM dont les accès en lecture et surtout en écriture
+								sont très lent comparés à des traitements en mémoire</li>
+								<li>Mise à jour optimisée du DOM réel</li>
+							</ul>
+						</ul>
 					</aside>
 				</section>
 
@@ -227,6 +258,14 @@ var Pay = React.creareClass({
 					<p class="fragment"><strong>React router</strong></p>
 					<p class="fragment"><strong>Architecture en flux</strong></p>
 					<p class="fragment"><strong>Universal JavaScript (aka isomorphic JavaScript)</strong></p>
+					<aside class="notes">
+						<strong>React seul ne permet pas de construire une application :</strong>
+						<ul>
+							<li><strong>Router: Bibliothéque référence pour mettre en place des routes dans une appli javascript</strong></li>
+							<li><strong>Flux:</strong>ne s’occupe que de la partie rendu de composants, il est donc nécessaire d’implémenter un pattern allant chercher les données et mettant à jour les composants avec ces données</li>
+							<li><strong>isomorphisme:</strong></li>
+						</ul>
+					</aside>
 				</section>
 
 				<section data-background="http://i.giphy.com/MpajEjKeok5nW.gif">
